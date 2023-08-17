@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styleqrcode.css">
+    <title>Qr-Code Reader</title>
+    <style>
+        .myDiv { 
+          display: block;
+          background: rgb(12,228,135);
+          background: linear-gradient(29deg, rgba(12,228,135,1) 0%, rgba(0,212,255,1) 100%);
+          text-align: center;
+          margin: 0;
+          padding: 8px;
+        }
+        a {
+            margin: 0 auto;
+            display: block;
+        }
+        </style>
+</head>
+<body>
+    <section>
+               <div>
+                    <div style="text-align: center;">
+                        <img src="img/scan.jpg" alt="scan" width="400px" >
+                    </div>
+                    <div class="myDiv">
+                        <a href="#" class="original-button" id="btnQR" onclick="window.location='https://line.me/R/nv/QRCodeReader'">SCAN</a>
+                    </div>
+                </div>
+    </section>
+        
+    <script src="https://static.line-scdn.net/liff/edge/version/2.4.0/sdk.js"></script>
+    <script>
+        async function main() {
+            await liff.init({ liffId : "2000286457-aBw3AdPk"})
+                
+            const queryString = decodeURIComponent(window.location.search)
+            const params = new URLSearchParams(queryString)
+            if (params.get("param") !== null) {
+                document.getElementsByTagName("a")[0].innerHTML = params.get("param")
+            }
+        }
+        main()
+    </script>
+    
+</body>
+</html>
